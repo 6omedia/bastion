@@ -1,0 +1,17 @@
+extends home
+
+block content
+	.formBox
+		.tab_btn#btn_signin.activeTab Sign In
+		.tab_btn#btn_signup 
+			a(href="/register") Sign Up
+		form(action="/" method="post")
+			ul
+				li
+					label Email
+					input(type="text" name="email")
+				li
+					label Password
+					input(type="text" name="password")
+				li
+					button(type="submit") Login

@@ -1,0 +1,66 @@
+[
+	{
+	       "title": "Awesome Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "farming"],
+        "outcomes": ["do better", "produce more"],
+        "elements": ["yeah", "hmmm", "sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Another Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "medical"],
+        "outcomes": ["do better", "be happy"],
+        "elements": ["yeah", "hmmm", "sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Something Cool",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "medical"],
+        "outcomes": ["take over the world"],
+        "elements": ["yeah", "hmmm", "sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Yeah Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "medical"],
+        "outcomes": ["do better", "take over the world"],
+        "elements": ["yeah", "sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Somekind of thing",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "medical"],
+        "outcomes": ["do better", "produce more"],
+        "elements": ["yeah", "sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Hmmm Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "computing", "farming"],
+        "outcomes": ["take over the world", "produce more"],
+        "elements": ["sure"],
+        "publishers": ["abc", "def"]
+	},
+	{
+		"title": "Marketing Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "medical"],
+        "outcomes": ["do better", "produce more"],
+        "elements": ["yeah", "hmmm", "sure"],
+        "publishers": ["ghi"]
+	},
+	{
+		"title": "Website Idea",
+        "text": "This is an awesoem idea to acheive this awful problem",
+        "industries": ["hair dressing", "medical", "bakeing"],
+        "outcomes": ["do better", "produce more"],
+        "elements": ["yeah", "hmmm", "sure"],
+        "publishers": ["abc", "def", "ghi"]
+	}
+]

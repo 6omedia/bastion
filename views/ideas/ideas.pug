@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+	include ../partials/header
+
+	.cont
+		ul.list#main_menu
+			li
+				a(href="/ideas").activeLink Ideas
+			li
+				a(href="/collections") Collections
+
+		ul.list.filters
+			li
+				label Industry
+				input(type="text")
+			li
+				label Outcome
+				input(type="text")
+			li
+				label Element
+				input(type="text")
+			li
+				label Publisher
+				input(type="text")

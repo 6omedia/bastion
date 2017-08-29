@@ -1,0 +1,8 @@
+todo
+DONE - ideas tests
+- ideas routes
+- ideas views
+- ideas frontend
+
+- ajax update profile form
+- 404 page

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+
+	include ./partials/header
+
+	.cont#profile_page
+		ul.list#main_menu
+			li
+				a(href="/ideas") Ideas
+			li
+				a(href="/collections") Collections
+
+		h2 Update Profile
+
+		.formBox
+			form(action="/profile", method="post")
+				input(type="hidden", name="userId", value=`${id}`)
+				ul
+					li
+						label Name
+						input(type="text", name="q_name", value=`${name}`)
+					li
+						label Email
+						input(type="text", id="q_email", value=`${email}`)
+					li
+						label Age
+						input(type="text", id="q_age", value=`${age}`)
+					li
+						label Website
+						input(type="text", id="q_website", value=`${website}`)
+					li
+						input(type="submit")

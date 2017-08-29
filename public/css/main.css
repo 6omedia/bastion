@@ -1,0 +1,317 @@
+/****************************
+ 
+ GENERAL
+  
+ ****************************/
+/* FONTS */
+
+/* GENERAL STYLING */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	color: #0B0014;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Pacifico', cursive;
+}
+
+p, a, input, label, div {
+	/*font-family: 'Kalam', cursive;*/
+	/*font-family: 'Average Sans', sans-serif;*/
+	font-family: 'Quicksand', sans-serif;
+}
+
+div {
+	font-family: 'Average Sans', sans-serif;
+}
+
+h1 {
+	margin: 10px 0px;
+}
+
+h2 {
+	font-family: 'Kalam', cursive;
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+p {
+
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+	text-decoration: none;
+	color: #000;
+}
+
+img {
+	width: 100%;
+}
+
+/* DRY Classes */
+
+.cont {
+    max-width: 1400px;
+    margin: 0px auto;
+}
+
+.btn_style {
+
+}
+
+.btn_style:hover {
+
+}
+
+.current {
+	
+}
+
+.list {
+	list-style: none;
+	padding: 0px;
+}
+
+.tab_btn {
+
+}
+
+/* Header */
+
+header {
+
+}
+
+/* form elements */
+
+input {
+    padding: 5px;
+    border: solid 1px #d4b19c;
+    box-shadow: 3px 3px 0px #d4b19c;
+}
+
+input:focus {
+	outline: none;
+	border: solid 1px #614d42;
+	box-shadow: 3px 3px 0px #614d42;
+}
+
+select {
+
+}
+
+textarea {
+
+}
+
+button {
+    background: rgb(86, 189, 210);
+    border: none;
+    padding: 5px 20px;
+    border: solid 1px #439bad;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* error box */
+
+#error {
+	background: #b52d2d;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px;
+    color: #fff;
+    display: none;
+}
+
+.display_error {
+	display: block !important;
+}
+
+/******************************
+
+	HOME PAGE
+
+*******************************/
+
+#home_page {
+    padding: 10px 0px;
+    background: linear-gradient(rgba(245, 233, 226, 0.87), rgb(255, 255, 255)), url(../img/home.jpg) no-repeat 50%;
+    background-size: cover;
+    border-top: solid 3px #4691c7;
+}
+
+.signinBox {
+	width: 90%;
+	max-width: 600px;
+	/*background: #F5E9E2;*/
+	margin: 40px auto;
+	text-align: center;
+}
+
+.signinBox h1 {
+	font-size: 58px;
+    color: #513377;
+}
+
+.signinBox p {
+    font-size: 22px;
+    margin: 45px 0px;
+}
+
+.formBox .tab_btn {
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 15px;
+    background: #d4b19c;
+    color: #101010;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: solid 1px #d4b19c;
+    border-bottom: 0px;
+}
+
+.formBox .tab_btn:nth-child(1){
+	border-radius: 5px 0px 0px 0px;
+}
+
+.formBox .tab_btn:nth-child(2){
+	border-radius: 0px 5px 0px 0px;	
+}
+
+.formBox .activeTab {
+    background: #efd9cb;
+    color: #613013;
+}
+
+.formBox form {
+    background: #efd9cb;
+    border-radius: 5px;
+    padding: 15px;
+    width: 240px;
+    margin: -1px auto 0px auto;
+    border: solid 1px #d4b19c;
+}
+
+.formBox form ul {
+	padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.formBox form ul li {
+    margin-bottom: 10px;
+}
+
+.formBox form ul li:last-child {
+	margin-bottom: 0px;
+}
+
+.formBox form button {
+    margin-top: 5px;
+}
+
+/* header */
+
+header {
+    border-bottom: solid 3px #ccc;
+    padding: 10px 30px;
+}
+
+header h1 {
+	color: #513377;
+    display: inline-block;
+}
+
+header ul {
+	float: right;
+	margin: 0px;
+    margin-top: 20px;
+}
+
+header ul li {
+	display: inline-block;
+}
+
+header ul li a {
+    margin: 0px 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #3c3c3c;
+}
+
+/* footer */
+
+footer {
+
+}
+
+/* profile */
+
+#main_menu {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#main_menu li {
+	display: inline-block;
+}
+
+#main_menu li a {
+    margin: 0px 10px;
+    font-size: 20px;
+    color: #909090;
+    font-weight: bold;
+}
+
+#main_menu li a:hover {
+	color: #513377;
+}
+
+.activeLink {
+    border-bottom: solid 3px #513377;
+    color: #513377 !important;
+}
+
+.filters li {
+	width: 23%;
+    display: inline-block;
+    margin: 0px 1%;
+}
+
+.filters li input {
+	width: 100%;
+	padding: 5px;
+    border: solid 2px #cccccc;
+    box-shadow: none;
+    background: #f2f2f2;
+}
+
+.filters li input:focus {
+	background: #efe9ff;
+}
+
+.filters label {
+    font-weight: bold;
+    color: #555;
+}
+
+#profile_page {
+    text-align: center;
+}
