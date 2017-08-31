@@ -6,6 +6,7 @@ var MongoStore = require('connect-mongo')(session);
 let bodyParser = require('body-parser');
 var config = '';
 var cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 if(process.env.NODE_ENV == 'test'){
 	config = require('./config/test.json');
@@ -44,6 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'}));  
+app.use(fileUpload());
 
 app.use('/static', express.static('public'));
 
@@ -54,6 +56,10 @@ app.use('/', mainRoutes);
 // ideas routes
 var ideaRoutes = require('./controllers/ideas.js');
 app.use('/ideas', ideaRoutes);
+
+// api
+var imageLibraryRoutes = require('./controllers/api/image_library.js');
+app.use('/api/image_library', imageLibraryRoutes);
 
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);

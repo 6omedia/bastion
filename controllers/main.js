@@ -3,6 +3,8 @@ const mainRoutes = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const mid = require('../middleware/session');
+const fs = require('fs');
+const path = require('path');
 
 mainRoutes.get('/', mid.loggedIn, function(req, res){
 
@@ -29,7 +31,8 @@ mainRoutes.post('/', function(req, res){
 
 				res.status(err.status);
 				return res.render('signin', {
-					error: error
+					email: req.body.email,
+					error: err
 				});
 
 			}
@@ -48,6 +51,7 @@ mainRoutes.post('/', function(req, res){
 		error = 'Both email and password required';
 		res.status(400);
 		return res.render('signin', {
+			email: '',
 			error: error
 		});
 
@@ -175,33 +179,47 @@ mainRoutes.post('/profile', mid.jsonLoginRequired, function(req, res){
 	        }  
 	    };
 
-		User.update({"_id": req.body.userId}, userObj, function(err, numberAffected){
+	    User.findById(req.body.userId, function(err, currentUser){
 
-			if(err){
-				if (err.name === 'MongoError' && err.code === 11000) {
-					data.error = 'That email address allready exists';
-					return res.json(data);
-	            }
-	            data.error = 'User not found';
+	    	if(err){
+	    		data.error = 'User not found';
 	            res.status(404);
 				return res.json(data);
-			}
+	    	}
 
-			if(numberAffected.nModified == 0){
-				data.error = 'User not found';
-				res.status(404);
-				return res.json(data);
-			}
+	    	User.update({"_id": req.body.userId}, userObj, function(err, numberAffected){
 
-			User.findById(req.body.userId, function(err, updatedUser){
+				if(err){
+					if (err.name === 'MongoError' && err.code === 11000) {
+						data.error = 'That email address allready exists';
+						return res.json(data);
+		            }
+		            data.error = 'User not found';
+		            res.status(404);
+					return res.json(data);
+				}
 
-				data.success = '1';
-				data.updatedUser = updatedUser;
-				return res.json(data);
+				if(numberAffected.nModified == 0){
+					data.error = 'User not found';
+					res.status(404);
+					return res.json(data);
+				}
+
+				if(userObj.email != currentUser.email){
+					// change foldername
+	    		}
+
+				User.findById(req.body.userId, function(err, updatedUser){
+
+					data.success = '1';
+					data.updatedUser = updatedUser;
+					return res.json(data);
+
+				});
 
 			});
 
-		});
+	    });
 
     });
 

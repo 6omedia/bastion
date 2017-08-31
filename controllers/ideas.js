@@ -153,7 +153,8 @@ ideasRoutes.get('/new', mid.loginRequired, function(req, res){
 		return res.render('ideas/idea_new', {
 	        	name: user.name,
 				userid: user._id,
-				error: ''
+				error: '',
+				current_link: 'new idea'
 		});
 
 	});

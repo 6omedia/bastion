@@ -4,5 +4,11 @@ DONE - ideas tests
 - ideas views
 - ideas frontend
 
+- if email updates change the name of the folder in public/uploads (already wrote consditions, just make it happen in the if statemtn in the update route)
 - ajax update profile form
 - 404 page
+
+SMALLER THINGS
+- post routes for signin and register display message
+- restrict /public/uploads/user@email.com
+- crop incoming images to a max size

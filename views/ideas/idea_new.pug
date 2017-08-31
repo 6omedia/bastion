@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+
+	include ../partials/header
+
+	.cont.edit_page
+		ul.list#main_menu
+			li
+				a(href="/ideas") Ideas
+			li
+				a(href="/collections") Collections
+
+		.box_edit_large.left
+			.form
+				ul.list
+					li
+						label.break Idea Title
+						input(type="text").input_grey_style
+					li
+						p bastion.com/idea
+					li
+						label.break Idea Text
+						textarea.input_grey_style
+				.btn_blueish.makeBtn.add#btn_addimgtogallery Add Image to Idea Gallary
+				ul.list#img_gallery
+					li
+						img(src="/static/img/placeholder.png")
+		.side.right
+			h4 Industries
+			input(type="text").input_grey_style#auto_industries
+			ul#industry_list.list
+			h4 Outcomes
+			input(type="text").input_grey_style#auto_outcomes
+			ul#outcome_list.list
+			h4 Elements
+			input(type="text").input_grey_style#auto_elements
+			ul#element_list.list
+			h4 Publishers
+			input(type="text").input_grey_style#auto_publishers
+			ul#publisher_list.list
+			.btn_style.makeBtn#btn_saveIdea Save Idea
+
+	#image_library_modal
+		#image_library
+			.header
+				h1 Image Library
+				label(for="uploadImgBtn").uploadBtn Upload Image
+				input(type="file", name="imglib_image").btn.nobg#uploadImgBtn 
+			.prog_wrap
+				.progress-bar
+			.imgWindow
+				ul.images
+				.message Select Image
+
+	script(src="/static/lib/image_library/image_library.js")
+	script(src="/static/js/ideas/idea_controller.js")
+	script(src="/static/js/ideas/idea_model.js")
+	script(src="/static/js/ideas/idea_view.js")
+	script(src="/static/js/ideas/ideas.js")

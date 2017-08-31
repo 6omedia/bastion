@@ -2,9 +2,12 @@ header
 	h1 #{name}'s bastion
 	ul.list
 		li
-			a(href="/") New Idea
+			if current_link == 'new idea'
+				a(href="/ideas/new").activeLink New Idea
+			else
+				a(href="/ideas/new") New Idea
 		li
-			a(href="/") New Collection
+			a(href="/collections/new") New Collection
 		li
 			if current_link == 'edit profile'
 				a(href="/profile").activeLink Edit Profile

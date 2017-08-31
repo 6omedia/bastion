@@ -19,6 +19,7 @@ let IdeaSchema = new Schema(
             required: true
         },
         img_src: String,
+        img_gallery: Array,
         text: String,
         industries: Array,
         outcomes: Array,
