@@ -3,6 +3,7 @@ const ideasRoutes = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const Idea = require('../models/idea');
+const Tag = require('../models/tag');
 const mid = require('../middleware/session');
 const helpful = require('../helpers/main.js');
 
@@ -14,7 +15,7 @@ ideasRoutes.get('/', mid.loginRequired, function(req, res){
             return next(err);
         }
 
-        Idea.find({}, function(err, ideas){
+        Idea.find({'user': req.session.userId}, function(err, ideas){
 
         	if(err){
         		return next(err);
@@ -41,13 +42,13 @@ ideasRoutes.get('/view/:ideaSlug', mid.loginRequired, function(req, res, next){
             return next(err);
         }
 
-        Idea.find({'slug': req.params.ideaSlug}, function(err, idea){
+        Idea.findOne({'slug': req.params.ideaSlug}, function(err, idea){
 
         	if(err){
         		return next(err);
         	}
 
-        	if(idea.length == 0 || idea.length == undefined){
+        	if(idea == null){
         		const err = new Error('Not found');
         		err.status = 404;
         		return next(err);
@@ -56,6 +57,7 @@ ideasRoutes.get('/view/:ideaSlug', mid.loginRequired, function(req, res, next){
         	res.locals = {
 	        	name: user.name,
 				userid: user._id,
+				mode: req.query.mode || 'view',
 				error: '',
 				idea: idea
 			};
@@ -113,11 +115,12 @@ ideasRoutes.post('/update/:ideaSlug', mid.jsonLoginRequired, function(req, res){
 			            title: req.body.title,
 			            slug: helpful.slugify(req.body.title),
 			            img_src: req.body.img_src,
+			            img_gallery: req.body.img_gallery || [],
 				        text: req.body.text,
-				        industries: req.body.industries,
-				        outcomes: req.body.outcomes,
-				        elements: req.body.elements,
-				        publishers: req.body.publishers
+				        industries: req.body.industries || [],
+				        outcomes: req.body.outcomes || [],
+				        elements: req.body.elements || [],
+				        publishers: req.body.publishers || []
 		        	}
 		        },
 		        { new: true },
@@ -165,8 +168,9 @@ ideasRoutes.post('/new', mid.jsonLoginRequired, function(req, res){
 
 	let body = {};
 
-	if(!req.body.title || !req.body.img_src || !req.body.img_src || !req.body.text || !req.body.industries
-		|| !req.body.outcomes || !req.body.elements || !req.body.publishers){
+	console.log(req.body);
+
+	if(!req.body.title || !req.body.img_src || !req.body.text){
 		res.status(400);
 		body.error = 'Invalid Data';
 		return res.send(body);
@@ -176,11 +180,12 @@ ideasRoutes.post('/new', mid.jsonLoginRequired, function(req, res){
 		title: req.body.title,
 		user: req.session.userId,
 		img_src: req.body.img_src,
+		img_gallery: req.body.img_gallery || [],
         text: req.body.text,
-        industries: req.body.industries,
-        outcomes: req.body.outcomes,
-        elements: req.body.elements,
-        publishers: req.body.publishers
+        industries: req.body.industries || [],
+        outcomes: req.body.outcomes || [],
+        elements: req.body.elements || [],
+        publishers: req.body.publishers || []
 	};
 
 	Idea.createIdea(ideaObj, function(err, idea){
@@ -273,9 +278,14 @@ ideasRoutes.delete('/:ideaSlug', mid.jsonLoginRequired, function(req, res){
 				return res.json(body);
 			}
 
-			res.status(200);
-			body.success = 'Idea Deleted';
-			return res.json(body);
+			Idea.find({'user': req.session.userId}, function(err, ideas){
+
+				res.status(200);
+				body.success = 'Idea Deleted';
+				body.ideas = ideas;
+				return res.json(body);
+
+			});
 
 		});
 

@@ -1,0 +1,47 @@
+.cont
+	ul.list#main_menu
+		li
+			a(href="/ideas").activeLink Ideas
+		li
+			a(href="/collections") Collections
+
+	.idea
+		.box_view_large.left
+			h2 #{idea.title}
+			a(href=`/ideas/view/${idea.slug}?mode=edit`).editLink Edit #{idea.title}
+			.content
+				p #{idea.text}
+			h3 Gallery
+			ul.list.imgGrid.cb_gallery
+				each img in idea.img_gallery
+					li
+						.lightBoxOverlay
+						img(src=`/static/uploads/${img}`)
+		.side_view.right
+			.featImg
+				img(src=`/static/uploads/${idea.img_src}`)
+			.tagRow
+				.tagBox
+					h3 Industries
+					ul#industries
+						each industry in idea.industries
+							li #{industry}
+				.tagBox
+					h3 Outcomes
+					ul#industries
+						each outcome in idea.outcomes
+							li #{outcome}
+			.tagRow
+				.tagBox
+					h3 Elements
+					ul#elements
+						each element in idea.elements
+							li #{element}
+				.tagBox
+					h3 Publishers
+					ul#publishers
+						each publisher in idea.publishers
+							li #{publisher}
+
+	script(src="/static/js/lightbox.js")
+	script(src="/static/js/ideas/ideaslightbox.js")

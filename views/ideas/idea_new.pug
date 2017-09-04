@@ -16,12 +16,12 @@ block content
 				ul.list
 					li
 						label.break Idea Title
-						input(type="text").input_grey_style
+						input(type="text").input_grey_style#q_title
 					li
-						p bastion.com/idea
+						p#slugBox bastion.com/idea
 					li
 						label.break Idea Text
-						textarea.input_grey_style
+						textarea.input_grey_style#q_ideaText
 				.btn_blueish.makeBtn.add#btn_addimgtogallery Add Image to Idea Gallary
 				ul.list#img_gallery
 					li
@@ -29,17 +29,22 @@ block content
 		.side.right
 			h4 Industries
 			input(type="text").input_grey_style#auto_industries
+			.btn.plus(data-field="industries") +
 			ul#industry_list.list
 			h4 Outcomes
 			input(type="text").input_grey_style#auto_outcomes
+			.btn.plus(data-field="outcomes") +
 			ul#outcome_list.list
 			h4 Elements
 			input(type="text").input_grey_style#auto_elements
+			.btn.plus(data-field="elements") +
 			ul#element_list.list
 			h4 Publishers
 			input(type="text").input_grey_style#auto_publishers
+			.btn.plus(data-field="publishers") +
 			ul#publisher_list.list
 			.btn_style.makeBtn#btn_saveIdea Save Idea
+			.msg_tick
 
 	#image_library_modal
 		#image_library
@@ -53,6 +58,7 @@ block content
 				ul.images
 				.message Select Image
 
+	script(src="/static/js/yeahautocomplete.js")
 	script(src="/static/lib/image_library/image_library.js")
 	script(src="/static/js/ideas/idea_controller.js")
 	script(src="/static/js/ideas/idea_model.js")

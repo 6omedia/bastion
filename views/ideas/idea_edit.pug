@@ -1,0 +1,84 @@
+.cont.edit_page
+	ul.list#main_menu
+		li
+			a(href="/ideas") Ideas
+		li
+			a(href="/collections") Collections
+	
+	.box_edit_large.left
+		h2#theTitle #{idea.title}
+		a(href=`/ideas/view/${idea.slug}`).viewLink View #{idea.title}
+		.form
+			ul.list
+				li
+					label.break Idea Title
+					input(type="text", value=`${idea.title}`).input_grey_style#q_title
+				li
+					p#slugBox bastion.com/idea
+				li
+					label.break Idea Text
+					textarea.input_grey_style#q_ideaText #{idea.text}
+			.btn_blueish.makeBtn.add#btn_addimgtogallery Add Image to Idea Gallary
+			ul.list#img_gallery
+				each img in idea.img_gallery
+					li
+						img(src=`/static/uploads/${img}`, data-imgsrc=`${img}`)
+						.overlay Remove
+	.side.right
+		h4 Industries
+		input(type="text").input_grey_style#auto_industries
+		.btn.plus(data-field="industries") +
+		ul#industry_list.list
+			each tag in idea.industries
+				li
+					span #{tag}
+					div(data-field="industries") x
+
+		h4 Outcomes
+		input(type="text").input_grey_style#auto_outcomes
+		.btn.plus(data-field="outcomes") +
+		ul#outcome_list.list
+			each tag in idea.outcomes
+				li
+					span #{tag}
+					div(data-field="outcomes") x
+
+		h4 Elements
+		input(type="text").input_grey_style#auto_elements
+		.btn.plus(data-field="elements") +
+		ul#element_list.list
+			each tag in idea.elements
+				li
+					span #{tag}
+					div(data-field="elements") x
+
+		h4 Publishers
+		input(type="text").input_grey_style#auto_publishers
+		.btn.plus(data-field="publishers") +
+		ul#publisher_list.list
+			each tag in idea.publishers
+				li
+					span #{tag}
+					div(data-field="publishers") x
+
+		.btn_style.makeBtn#btn_updateIdea(data-slug=`${idea.slug}`) Update Idea
+		.msg_tick
+
+#image_library_modal
+	#image_library
+		.header
+			h1 Image Library
+			label(for="uploadImgBtn").uploadBtn Upload Image
+			input(type="file", name="imglib_image").btn.nobg#uploadImgBtn 
+		.prog_wrap
+			.progress-bar
+		.imgWindow
+			ul.images
+			.message Select Image
+
+//- script(src="/static/lib/form/form.js")
+script(src="/static/lib/image_library/image_library.js")
+script(src="/static/js/ideas/idea_controller.js")
+script(src="/static/js/ideas/idea_model.js")
+script(src="/static/js/ideas/idea_view.js")
+script(src="/static/js/ideas/ideas.js")

@@ -12,3 +12,5 @@ SMALLER THINGS
 - post routes for signin and register display message
 - restrict /public/uploads/user@email.com
 - crop incoming images to a max size
+- idea title on blur update view slug
+- wysiwyg editor

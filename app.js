@@ -57,9 +57,13 @@ app.use('/', mainRoutes);
 var ideaRoutes = require('./controllers/ideas.js');
 app.use('/ideas', ideaRoutes);
 
-// api
+// api - imagelibrary
 var imageLibraryRoutes = require('./controllers/api/image_library.js');
 app.use('/api/image_library', imageLibraryRoutes);
+
+// api - tags
+var tagRoutes = require('./controllers/api/tags.js');
+app.use('/api/tags', tagRoutes);
 
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);

@@ -1,12 +1,18 @@
-(function(ImageLibrary, IdeaController, IdeaModel, IdeaView){
+(function(YeahAutocomplete, ImageLibrary, IdeaController, IdeaModel, IdeaView){
 
 	function Idea(IdeaController, IdeaModel, IdeaView){
-		this.IdeaModel = new IdeaModel();
+
 		this.IdeaView = new IdeaView();
-		this.controller = new IdeaController(this.IdeaModel, this.IdeaView, new ImageLibrary(this.IdeaView.imgLibContainer));
-		// this.ideaForm = new Form();
+		this.IdeaModel = new IdeaModel();
+		this.controller = new IdeaController(
+			this.IdeaModel, 
+			this.IdeaView, 
+			new ImageLibrary(this.IdeaView.imgLibContainer),
+			YeahAutocomplete
+		);
+
 	}
 
 	var idea = new Idea(IdeaController, IdeaModel, IdeaView);
 
-}(imageLibrary.ImageLibrary, IdeaController, IdeaModel, IdeaView));
+}(YeahAutocomplete, imageLibrary.ImageLibrary, IdeaController, IdeaModel, IdeaView));

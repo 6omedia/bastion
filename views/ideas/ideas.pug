@@ -24,3 +24,18 @@ block content
 			li
 				label Publisher
 				input(type="text").input_grey_style
+		#ideas
+			.cont
+				each idea in ideas
+					.idea_box
+						.delete
+						img(src=`/static/uploads/${idea.img_src}`)
+						h2 #{idea.title}
+						.actions
+							a(href=`/ideas/view/${idea.slug}`).view View
+							a(href=`/ideas/view/${idea.slug}?mode=edit`).edit Edit
+							span.delete(data-slug=`${idea.slug}`) Delete
+
+	script(src="/static/js/popup.js")
+	script(src="/static/js/yeahautocomplete.js")
+	script(src="/static/js/ideas/ideas_all.js")
