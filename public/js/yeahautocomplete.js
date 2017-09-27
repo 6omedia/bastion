@@ -2,106 +2,6 @@
 
 var YeahAutocomplete = (function(){
 
-	// function YeahAutocomplete(selector, wpAjaxAction, allowFreeType){
-	// 	this.selector = selector;
-	// 	this.element = document.getElementById(selector);
-	// 	this.jElement = $('#' + selector);
-	// 	var thisAutocomplete = this;
-	// 	this.jElement.on('input', function(){
-	// 		thisAutocomplete.getResults($(this).val());
-	// 	});
-	// 	this.resultsLoaded = new CustomEvent(
-	// 	  	"resultsLoaded", {
-	// 	   	detail:
-	// 	   	{
-	//    	  		data: '',
-	//    	  		time: new Date()
-	// 	   	},
-	// 	   	bubbles: true,
-	// 	   	cancelable: true
-	//   	});
-
-	// 	this.selectedValue = 'none';
-
-	// 	// select item 
-	// 	this.itemSelected = new CustomEvent(
-	// 	  	"itemSelected", {
-	// 	  		'detail': {
-	// 	  			'selectedValue': this.selectedValue
-	// 	  		}
-	// 	  	}
-	// 	);
-
-	//   	this.resultsList = $('<ul class="YeahAutocomplete_list"></ul>');
-	//   	this.jElement.after(this.resultsList);
-	//   	this.wpAjaxAction = wpAjaxAction;
-
-	//   	if(!allowFreeType){
-	// 	  	this.jElement.on('blur', function(){
-	// 	  		// thisAutocomplete.resultsList.empty();
-
-	//   		thisAutocomplete.jElement.val('');
-		  		
-	// 	  	});
-	// 	}
-	// }
-
-	// YeahAutocomplete.prototype.getResults = function(term){
-
-	// 	var thisAutocomplete = this;
-
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: autoAjax.ajaxurl,
-	//         data: {
-	//         	action: thisAutocomplete.wpAjaxAction,
-	//         	tt_term: term
-	//         },
-	// 		// dataType: 'json',
-	// 		success: function(data)
-	// 		{
-				
-	// 			thisAutocomplete.resultsList.empty();
-
-	// 			thisAutocomplete.resultsLoaded.detail.data = data;
-	// 			thisAutocomplete.element.dispatchEvent(thisAutocomplete.resultsLoaded);
-
-	// 			thisAutocomplete.resultsList.show();
-
-	// 		},
-	// 		error: function(xhr, desc, err)
-	// 		{	
-	// 			console.log(xhr, desc, err);
-	// 		}
-	// 	});
-
-	// };
-
-	// YeahAutocomplete.prototype.displayResults = function(data, property, saveProperty){
-
-	// 	var thisAutocomplete = this;
-	// 	this.resultsList.empty();
-
-	// 	for(var i=0; i<data.length; i++){
-
-	// 		var code = data[i][saveProperty];
-
-	// 		var li = $('<li><b>' + data[i][saveProperty] + '</b> | ' + data[i][property] + '</li>').on('click', function(){
-	// 					thisAutocomplete.jElement.val($(this).text());
-	// 					thisAutocomplete.resultsList.empty();
-	// 					thisAutocomplete.itemSelected.detail.selectedValue = code;
-	// 					thisAutocomplete.element.dispatchEvent(thisAutocomplete.itemSelected);
-	// 				}).on('blur', function(){
-	// 					thisAutocomplete.resultsList.empty();
-	// 				});
-
-	// 		this.resultsList.append(li);
-	// 	}
-
-	// 	this.resultsList.show();
-
-	// };
-
 	function Model(){
 
 	}
@@ -125,6 +25,7 @@ var YeahAutocomplete = (function(){
 			var li = $('<li class="yac_li">' + results[i][property] + '</li>');
 			li.on('click', function(){
 				thisView.input.val($(this).text());
+				thisView.input.trigger("resultSelected");
 				thisView.resultsList.hide();
 			});
 			this.resultsList.append(li);
@@ -142,6 +43,10 @@ var YeahAutocomplete = (function(){
 		this.view.input.on('input', function(){
 			thisYac.getResults($(this).val(), options.dataUrl, options.method, {}, options.arrName, options.property);
 		});
+
+		// this.view.input.on('blur', function(){
+		// 	thisYac.onBlur($(this).val());
+		// });
 
 		$('body').on('click', function(e){
 			if(!$(e.target).hasClass('yac_li')){
@@ -193,30 +98,38 @@ var YeahAutocomplete = (function(){
 
 	};
 
-	YeahAutocomplete.prototype.displayResults = function(){
+	// YeahAutocomplete.prototype.displayResults = function(){
 
-		var thisYac = this;
-		this.view.resultsList.empty();
+	// 	var thisYac = this;
+	// 	this.view.resultsList.empty();
 
-		for(var i=0; i<data.length; i++){
+	// 	for(var i=0; i<data.length; i++){
 
-			var code = data[i][saveProperty];
+	// 		// var code = data[i][saveProperty];
 
-			var li = $('<li><b>' + data[i][saveProperty] + '</b> | ' + data[i][property] + '</li>').on('click', function(){
-						thisAutocomplete.jElement.val($(this).text());
-						thisAutocomplete.resultsList.empty();
-						thisAutocomplete.itemSelected.detail.selectedValue = code;
-						thisAutocomplete.element.dispatchEvent(thisAutocomplete.itemSelected);
-					}).on('blur', function(){
-						thisAutocomplete.resultsList.empty();
-					});
+	// 		// var li = $('<li><b>' + data[i][saveProperty] + '</b> | ' + data[i][property] + '</li>').on('click', function(){
+	// 		// 			thisAutocomplete.jElement.val($(this).text());
+	// 		// 			thisAutocomplete.resultsList.empty();
+	// 		// 			thisAutocomplete.itemSelected.detail.selectedValue = code;
+	// 		// 			thisAutocomplete.element.dispatchEvent(thisAutocomplete.itemSelected);
+	// 		// 		}).on('blur', function(){
+	// 		// 			thisAutocomplete.resultsList.empty();
+	// 		// 		});
 
-			this.resultsList.append(li);
-		}
+	// 		// this.resultsList.append(li);
+	// 	}
 
-		this.resultsList.show();
+	// 	this.resultsList.show();
 
-	};
+	// };
+
+	// YeahAutocomplete.prototype.onBlur = function(inputValue){
+
+	// 	this.view.input.on('blur', function(){
+
+	// 	});
+
+	// };
 
 	return YeahAutocomplete;
 

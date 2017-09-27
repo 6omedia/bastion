@@ -10,7 +10,7 @@ var IdeaController = (function(){
 		    .replace(/^-+/, '')             // Trim - from start of text
 		    .replace(/-+$/, '');            // Trim - from end of text
 	}
-
+	
 	///////////////////////////////////////////////////////////////
 	
 	function IdeaController(model, view, imageLibrary, YeahAutocomplete){

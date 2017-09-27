@@ -20,6 +20,27 @@
 		});
 
 	};
+	Model.prototype.filter = function(fields, callback){
+
+		var thisModel = this;
+
+		console.log(fields);
+
+		$.ajax({
+			url: '/ideas/getfiltered?industry=' + fields.industry + '&outcome=' + fields.outcome + '&element=' + fields.element + '&publisher=' + fields.publisher,
+			method: 'GET',
+			success: function(data){
+				if(!data.error){
+					this.ideas = data.ideas;
+				}
+				callback(data.ideas);
+			},
+			error: function(a, b, c){
+				callback({error: 'something went wrong'});
+			}
+		});
+
+	};
 
 	function View(){
 		this.deleteBtn = $('.delete');
@@ -55,6 +76,7 @@
 	};
 
 	function IdeaManager(Model, View){
+
 		var thisIdeaMan = this;
 		this.model = new Model();
 		this.view = new View();
@@ -81,19 +103,61 @@
 
 		});
 
-		var industryAutocomplete = new YeahAutocomplete('auto_industries', true);
+		this.applyAutoComplete();
 		
+		$('.input_grey_style').on('resultSelected', function(){
+			thisIdeaMan.model.filter({
+				industry: $('#auto_industries').val(),
+				outcome: $('#auto_outcomes').val(),
+				element: $('#auto_elements').val(),
+				publisher: $('#auto_publishers').val()
+			}, function(data){
+				// stop spinning
+				if(!data.error){
+					thisIdeaMan.view.refreshIdeas(data);
+				}
+			});
+		});
+
 	}
 
 	IdeaManager.prototype.applyAutoComplete = function(){
 
+		var industryAutocomplete = new YeahAutocomplete({
+			input: 'auto_industries',
+			allowFreeType: true,
+			dataUrl: '/api/tags/search/industries',
+			method: 'GET',
+			arrName: 'tags',
+			property: 'name'
+		});
 
+		var outcomeAutocomplete = new YeahAutocomplete({
+			input: 'auto_outcomes',
+			allowFreeType: true,
+			dataUrl: '/api/tags/search/outcomes',
+			method: 'GET',
+			arrName: 'tags',
+			property: 'name'
+		});
 
-		// fromAutocomplete.element.addEventListener("resultsLoaded", function(e){
+		var elementAutocomplete = new YeahAutocomplete({
+			input: 'auto_elements',
+			allowFreeType: true,
+			dataUrl: '/api/tags/search/elements',
+			method: 'GET',
+			arrName: 'tags',
+			property: 'name'
+		});
 
-		// 	fromAutocomplete.displayResults(JSON.parse(e.detail.data).cities, 'city');
-			
-		// }, false);
+		var publisherAutocomplete = new YeahAutocomplete({
+			input: 'auto_publishers',
+			allowFreeType: true,
+			dataUrl: '/api/tags/search/publishers',
+			method: 'GET',
+			arrName: 'tags',
+			property: 'name'
+		});
 
 	};
 

@@ -293,4 +293,10 @@ ideasRoutes.delete('/:ideaSlug', mid.jsonLoginRequired, function(req, res){
 
 });
 
+// ideasRoutes.get('/get_ideas', mid.jsonLoginRequired, function(req, res){
+
+	
+
+// });
+
 module.exports = ideasRoutes;

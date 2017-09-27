@@ -69,7 +69,8 @@ img {
 .cont {
     max-width: 1400px;
     margin: 0px auto;
-    overflow: auto;
+    overflow: hidden;
+    padding-bottom: 40px;
 }
 
 .break {
@@ -113,17 +114,31 @@ img {
 
 }
 
-.current {
-	
-}
-
 .list {
 	list-style: none;
 	padding: 0px;
 }
 
-.tab_btn {
+.overlay {
+    background: rgba(0,0,0,0.75);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+}
 
+.no_img {
+    display: inline-block !important;
+}
+
+.disabled {
+    background: #ddd !important;
+    color: #bbb !important;
 }
 
 /* Header */
@@ -427,6 +442,10 @@ footer {
 
 /* Editing Pages */
 
+/*#fixed_side {
+    position: fixed;
+}*/
+
 .edit_page input,
 .edit_page textarea {
     width: 100%;
@@ -440,7 +459,7 @@ footer {
     width: 80%;
 }
 
-.box_edit_large p {
+#slugBox {
     margin-top: 10px;
     font-style: italic;
     text-align: right;
@@ -773,8 +792,305 @@ footer {
     background-size: 24px;
 }
 
+/* Collections */
+
+.collection_box {
+    display: inline-block;
+    margin: 20px 0px;
+    position: relative;
+    text-align: center;
+}
+
+.collection_box h2 {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    font-size: 20px;
+    padding: 20px 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0.62), rgba(255, 255, 255, 0));
+    color: #fff;
+}
+
+.collection_box .actions {
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.47));
+    padding: 20px;
+}
+
+.collection_box .actions a,
+.collection_box .actions span {
+    background: transparent;
+    width: 33.333%; 
+    display: inline-block;
+    color: transparent;
+    cursor: pointer;
+}
+
+.collection_box .actions a:hover,
+.collection_box .actions span:hover {
+    padding: 20px 0px 0px 0px;
+    color: #fff;
+    background: transparent;
+}
+
+.collection_box .actions .view {
+    background: url('../img/view.png') no-repeat 50%;
+}
+.collection_box .actions .view:hover {
+    background: url('../img/view.png') no-repeat 50% 0%;
+}
+.collection_box .actions .edit {
+    background: url('../img/pencil.png') no-repeat 50%;
+    background-size: 20px;
+}
+.collection_box .actions .edit:hover {
+    background: url('../img/pencil.png') no-repeat 50% 0%;
+    background-size: 20px;
+}
+.collection_box .actions .delete {
+    background: url('../img/rubbish.png') no-repeat 50%;
+    background-size: 20px;
+}
+.collection_box .actions .delete:hover {
+    background: url('../img/rubbish.png') no-repeat 50% 0%;
+    background-size: 20px;
+}
+
+div[class*='stack'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+div[class*='stack'] {
+    float: left;
+    position: relative;
+    margin: 10px 50px;
+}
+ 
+div[class*='stack'], div[class*='stack']:before, div[class*='stack']:after {
+    border: 6px solid #fff;
+    height: 250px; width: 250px;
+    -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+ 
+div[class*='stack']:before, div[class*='stack']:after {
+    background: #768590;
+    content: "";
+    position: absolute;
+    z-index: -1;
+}
+ 
+div[class*='stack']:before {
+    background: #eff4de;
+}
+
+/*STACK TWO*/
+.stackone:before {
+    top: 0px;
+    left: 10px;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+ 
+.stackone:after {
+    top: 4px; left: -10px;
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+}
+
+/*STACK TWO*/
+.stacktwo:before {
+    top: 0px;
+    left: -10px;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+ 
+.stacktwo:after {
+    top: 5px; left: 0px;
+    -webkit-transform: rotate(4deg);
+    -moz-transform: rotate(4deg);
+    -o-transform: rotate(4deg);
+    -ms-transform: rotate(4deg);
+    transform: rotate(4deg);
+}
+ 
+/*STACK THREE*/
+.stackthree:before {
+    top: 5px;
+    left: -15px;
+    z-index: -1;
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+ 
+.stackthree:after {
+    top: -2px;
+    left: -10px;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+
+.side_view .ideas {
+    background: #f2f2f2;
+    padding: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.13);
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border: solid 2px #cccccc;
+}
+
+.side_view h2 {
+    font-size: 22px;
+    color: #505050;
+    display: inline-block;
+}
+
+.side_view .ideas .btn_style {
+    float: right;
+    color: #eff2ff;
+    background: #004582;
+    padding: 0px 5px;
+}
+
+.side_view .ideas .header {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.side_view .ideas ul {
+    max-height: 350px;
+    overflow: auto;
+    margin-bottom: 0px;
+}
+
+.side_view .ideas ul li {
+    width: 130px;
+    display: inline-block;
+    margin: 1%;
+    height: 130px;
+    position: relative;
+}
+
+.side_view .ideas ul li p {
+    position: absolute;
+    font-size: 12px;
+    color: #fff;
+    background: linear-gradient(rgba(0, 0, 0, 0.71), rgba(255, 255, 255, 0));
+    padding: 5px;
+    width: 100%;
+}
+
+.side_view .ideas ul li .overlay {
+    cursor: pointer;
+    padding: 37px 10px;
+    background: rgba(0,0,0,0.7) url('../img/plus.png') no-repeat 50%;
+}
+
+.side_view .ideas ul li:hover > .overlay {
+    display: inline-block;
+}
+
+.side_view .ideas ul li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#idea_search {
+    width: 200px;
+    float: right;
+    background: #fff;
+}
+
+#collectionDescli {
+    width: calc(100% - 360px);
+    display: inline-block;
+}
+
+#collectionDescli textarea {
+    height: 256px;
+}
+
+#collectionImgli {
+    position: relative;
+    display: inline-block;
+    width: 340px;
+    margin-left: 20px;
+    vertical-align: top;
+}
+
+#collectionImgli .overlay {
+    top: 32px;
+    height: 256px;
+    background: #e2e2e2 url(../img/upload.png) no-repeat 50% 45%;
+    padding-top: 135px;
+    color: #7a7a7a;
+    font-weight: bold;
+    border: dashed 2px #a9a9a9;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 0;
+}
+
+#collectionImgli .overlay:hover {
+    background: #f1f1f1 url(../img/upload.png) no-repeat 50% 40%;
+    border-color: #dcdcdc;
+}
+
+#collectionImgli:hover > .removeImg {
+    background: rgba(255, 255, 255, 0.8) url(../img/upload.png) no-repeat 50% 40%;
+    border-color: #dcdcdc;
+    display: inline-block;
+}
+
+#collectionImgli img {
+    height: 256px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.collIdeas > div {
+    margin: 0px 20px 20px 0px;
+}
+
+.collIdeas > div h2 {
+    bottom: 0px;
+}
+
+.collIdeas > div .overlay {
+    background: rgba(0,0,0,0.7) url('../img/cross.png') no-repeat 50%;
+    cursor: pointer;
+}
+
+.collIdeas > div:hover .overlay {
+    display: inline-block;
+}
+
 /***************************************************************
-    
+
     JS LIBS
 
 ****************************************************************/
@@ -875,6 +1191,7 @@ footer {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     border: solid 1px rgba(0, 0, 0, 0.07);
     padding: 0px !important;
+    z-index: 1;
 }
 
 .YeahAutocomplete_list li {

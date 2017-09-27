@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 //book schema definition
 let IdeaSchema = new Schema(
     {
+        date_created: {
+            type: Date,
+            default: new Date()
+        },
         title: {
             type: String,
             required: true

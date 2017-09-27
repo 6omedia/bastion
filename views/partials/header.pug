@@ -7,7 +7,10 @@ header
 			else
 				a(href="/ideas/new") New Idea
 		li
-			a(href="/collections/new") New Collection
+			if current_link == 'new collection'
+				a(href="/collections/new").activeLink New Collection
+			else
+				a(href="/collections/new") New Collection
 		li
 			if current_link == 'edit profile'
 				a(href="/profile").activeLink Edit Profile

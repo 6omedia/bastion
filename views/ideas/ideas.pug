@@ -14,21 +14,20 @@ block content
 		ul.list.filters
 			li
 				label Industry
-				input(type="text").input_grey_style
+				input(type="text")#auto_industries.input_grey_style
 			li
 				label Outcome
-				input(type="text").input_grey_style
+				input(type="text")#auto_outcomes.input_grey_style
 			li
 				label Element
-				input(type="text").input_grey_style
+				input(type="text")#auto_elements.input_grey_style
 			li
 				label Publisher
-				input(type="text").input_grey_style
+				input(type="text")#auto_publishers.input_grey_style
 		#ideas
 			.cont
 				each idea in ideas
 					.idea_box
-						.delete
 						img(src=`/static/uploads/${idea.img_src}`)
 						h2 #{idea.title}
 						.actions

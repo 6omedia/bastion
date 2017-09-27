@@ -57,6 +57,10 @@ app.use('/', mainRoutes);
 var ideaRoutes = require('./controllers/ideas.js');
 app.use('/ideas', ideaRoutes);
 
+// ideas routes
+var collectionRoutes = require('./controllers/collections.js');
+app.use('/collections', collectionRoutes);
+
 // api - imagelibrary
 var imageLibraryRoutes = require('./controllers/api/image_library.js');
 app.use('/api/image_library', imageLibraryRoutes);
@@ -73,8 +77,8 @@ app.use(function(err, req, res, next) {
 	});
 });
 
-app.listen(3000, function () {
-	console.log('App running on port 3000');
+app.listen(9000, function () {
+	console.log('App running on port 9000');
 });
 
 module.exports = app;

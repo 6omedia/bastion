@@ -1,0 +1,71 @@
+extends ../layout
+
+block content
+
+	include ../partials/header
+
+	.cont.edit_page
+		ul.list#main_menu
+			li
+				a(href="/ideas") Ideas
+			li
+				a(href="/collections").activeLink Collections
+
+		.box_view_large.left
+			.form
+				ul.list
+					li
+						label.break Collection Title
+						input(type="text").input_grey_style#q_title
+					li
+						p#slugBox bastion.com/collection
+					li#collectionDescLi
+						label.break Collection Description
+						textarea.input_grey_style#q_ideaText
+					li#collectionImgli
+						label.break Collection Image
+						.overlay.no_img Upload Image
+						img(src="/static/img/placeholder.png")#q_img
+
+			h2 Ideas				
+			.collIdeas
+				//- each idea in ideas
+				//- 	.idea_box(data-ideaid=`${idea._id}`)
+				//- 		.overlay
+				//- 		h2 #{idea.title}
+				//- 		img(src=`/static/uploads/${idea.img_src}`, data-imgsrc=`${idea.img_src}`)
+
+		.side_view.right
+			#fixed_side
+				.ideas
+					.header
+						h2 Add Ideas to Collection
+						input(type="text", placeholder="Search Ideas...").input_grey_style#idea_search
+					ul.list
+						each idea in ideas
+							li(data-ideaid=`${idea._id}`)
+								.overlay
+								p #{idea.title}
+								img(src=`/static/uploads/${idea.img_src}`, data-imgsrc=`${idea.img_src}`)
+
+					if ideas.length == 20
+						p load more...
+
+				.btn_style.makeBtn#btn_saveIdea Save Collection
+				.msg_tick
+
+	#image_library_modal
+		#image_library
+			.header
+				h1 Image Library
+				label(for="uploadImgBtn").uploadBtn Upload Image
+				input(type="file", name="imglib_image").btn.nobg#uploadImgBtn 
+			.prog_wrap
+				.progress-bar
+			.imgWindow
+				ul.images
+				.message Select Image
+
+	script(src="/static/js/yeahautocomplete.js")
+	script(src="/static/lib/image_library/image_library.js")
+	script(src="/static/js/collections/collection.js")
